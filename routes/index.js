@@ -5,7 +5,7 @@ var authMiddleware = require('../config/auth');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: "Cade's App" });
+  res.render('index', { title: "Kaan's App" });
 });
 
 router.get('/login', function(req, res, next) {
@@ -16,9 +16,9 @@ router.get('/register', function(req, res, next) {
   res.render('register');
 });
 
-router.get('/secret', authMiddleware, function(req, res, next) {
+router.get('/profile', authMiddleware, function(req, res, next) {
   console.log('req.user:', req.user);
-  res.send('Wooo!  Secret stuff!!!');
+  res.render('profile');
 });
 
 module.exports = router;

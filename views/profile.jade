@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1 Your watchlist
+  table.table.table-striped.table-hover
+    thead
+      tr
+        th#symbols Symbol
+        th#names Name
+        th#exchanges Exchange
+        th#prices Price
+        th
+    tbody
+      tr#template
+        td.sym
+        td.name  
+        td.exchange
+        td.price
+        td.remove
+p.notification      
+block scripts
+  script(src="/js/profile.js")
