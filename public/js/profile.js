@@ -2,6 +2,11 @@ var domstuff;
 $(document).ready(init);
 
 function init(){
+  if(document.cookie){
+    $('.loginli, .regli').css('visibility', 'hidden');;
+    $('.logoutli').css('visibility', 'visible');
+  }
+
   $('tbody').on('click', '.remove',function(e){
     e.stopPropagation();
     var $row = $(this).closest('tr');
@@ -34,7 +39,7 @@ function init(){
           $tr.find('.sym').text(input.symbol);
           $tr.find('.exchange').text(input.exchange);
           $tr.find('.remove').append($remove);
-          $('tbody').append($tr); 
+          $('tbody').append($tr);
           return $tr;
         });
       });

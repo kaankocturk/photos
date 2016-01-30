@@ -1,7 +1,13 @@
 'use strict';
+$(document).ready(init);
 
-console.log('index.js!');
-
-var ref = new Firebase('https://loginz.firebaseio.com/');
-
-ref.set('whoa!')
+function init(){
+  var ref = new Firebase('https://loginz.firebaseio.com/');
+  ref.set('whoa!');
+  if(document.cookie){
+    $('.loginli, .regli').css('visibility', 'hidden');
+  }else{
+    $('.loginli, .regli').css('visibility', 'visible');
+    $('.logoutli').css('visibility', 'hidden');
+  }
+}

@@ -5,11 +5,12 @@ block content
   form
     .form-group
       label(for='email') Email address
-      input#email.form-control(type='email', placeholder='Email')
+      input#email.form-control(type='email', placeholder='Email', required)
     .form-group
       label(for='password') Password
       input#password.form-control(type='password', placeholder='Password')
     button.btn.btn-default(type='submit') Login
-
+    button.btn.btn-primary Reset Password
+    p To reset your password, simply enter your email and click reset password.
 block scripts
   script(src="/js/login.js")

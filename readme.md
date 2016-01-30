@@ -1,10 +1,7 @@
-# Auth Starter Pack
+# Personal stock watcher
 
-### To begin enter `npm run setup`.  This will install all dependencies.
+##You can search, add and delete stocks to/from your watchlist.
+##All authentication and password retrieval systems integrated
+##In other words, MVP!
 
-### Then, set your environment variable, by entering `export JWT_SECRET='anything you want'`
-### Be sure to enter your Firebase address in routes/users.js
-
-### NOTE:  Be sure to enter this in the same terminal window that you are running your server.
-
-### After all that, you can start your server with `npm start` or `nodemon`.
+https://quiet-brushlands-27392.herokuapp.com/

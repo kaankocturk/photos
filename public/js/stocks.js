@@ -5,6 +5,11 @@ var domstuff;
 var stockcount;
 
 function init(){
+  if(document.cookie){
+    $('.loginli, .regli').css('visibility', 'hidden');
+    $('.logoutli').css('visibility', 'visible');
+  }
+
   $('tbody').on('click', '.add',function(e){
       e.stopPropagation();
       $row = $(this).closest('tr');

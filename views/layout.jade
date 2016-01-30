@@ -4,6 +4,7 @@ html
     title your stock market portal
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/style.css')
+    block css
   body
     nav.navbar.navbar-default.navbar-static-top
       .container
@@ -19,16 +20,16 @@ html
             li
               a(href='/') Home
           ul.nav.navbar-nav.navbar-right
-            li
+            li.regli
               a(href='/register') Register
-            li
+            li.loginli
               a(href='/login') Login
-            li
+            li.changeli 
+              a(href='/changepw') Change Password
+            li.logoutli
               a(href='/users/logout') Logout
-
     .container
       block content
-
     script(src='/lib/jquery/dist/jquery.min.js')
     script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
     block scripts

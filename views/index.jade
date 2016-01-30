@@ -1,9 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-
+  #main  
+    h1= title
+    a(href='/stocks')
+      button.btn.btn-primary Search stocks
+    a(href='/profile')
+      button.btn.btn-info Show my watchlist
 block scripts
   script(src='/lib/firebase/firebase.js')
   script(src="/js/index.js")
+
+block css
+  link(rel='stylesheet', href='/css/index.css')

@@ -5,11 +5,15 @@ var authMiddleware = require('../config/auth');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: "Kaan's App" });
+  res.render('index', { title: "The app you need" });
 });
 
 router.get('/login', function(req, res, next) {
   res.render('login');
+});
+
+router.get('/changepw', function(req, res, next) {
+  res.render('changepw');
 });
 
 router.get('/register', function(req, res, next) {

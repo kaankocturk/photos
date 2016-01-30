@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .main
+    .container.container1
+      form.form-inline.input(role='form')
+        .form-group
+          label(for='email') Email:
+          input#email.form-control(type='text')
+        .form-group
+          label(for='old') Old password:
+          input#old.form-control(type='text')
+        .form-group
+          label(for='new') New password:
+          input#new.form-control(type='text')
+        button.btn.btn-success.addItem(type='submit') Change Password
+block scripts
+  script(src="/js/change.js")
