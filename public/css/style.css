@@ -10,6 +10,9 @@
 #templatetradables{
   display: none;
 }
+#templateoffer{
+  display: none;
+}
 body{
   font-size: 17px;
 }
@@ -17,11 +20,14 @@ table{
   margin-top: 36px;
 }
 .thumb{
-  max-width: 100px;
+  max-width: 72px;
 }
 .regular{
   max-width: 200px;
 }
 .privatelist{
-  margin-top: 200px;
+  margin-top: 20px;
+}
+.minithumb{
+  max-width: 30px;
 }

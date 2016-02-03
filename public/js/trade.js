@@ -11,6 +11,7 @@ function init(){
     .fail(function(err) {
       console.error(err);
     });
+    location.replace('/dashboard');
   });
 
   $.get('/items/my')

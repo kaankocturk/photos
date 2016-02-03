@@ -11,7 +11,9 @@ var User = require('../models/user');
 var ref = new Firebase('https://bartererz.firebaseio.com/');
 
 router.post('/register', function(req, res, next) {
+  console.log('body',req.body);
   ref.createUser(req.body, function(err, userData) {
+    console.log(userData);
     if(err) return res.status(400).send(err);
     User.create(userData, function(err) {
       res.send();

@@ -2,10 +2,10 @@ extends layout
 block content
   .row
     .col-sm-4  
-      ul.privatelist Item Information
-        li #{name}
-        img.regular(src= '#{picurl}')
-        li #{description}
+      img.regular(src= '#{picurl}')
+      h2.privatelist Item Information
+      p #{name}
+      p #{description}
     .tradables.col-sm-8
       h1 Available items for trade
       table.table.table-striped.table-hover
