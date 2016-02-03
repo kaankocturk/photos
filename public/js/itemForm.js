@@ -10,7 +10,7 @@ function init(e){
 
 function handleEntry(e){
   e.preventDefault();
-  $.post('/items', {name: $('input#name').val(), description: $('input#description').val(), picurl: $('input#picurl').val()})
+  $.post('/items', {name: $('input#name').val(), description: $('input#description').val(), picurl: $('input#picurl').val(), isAvailable: false})
   .success(function(data){
     console.log(data);
   }).fail(function(error){

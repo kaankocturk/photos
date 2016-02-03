@@ -1,10 +1,25 @@
 extends layout
 block content
   .row
-    .col-xs-4  
-      ul Item Information
-        li Name = #{name}
-        li Description = #{description}
-        img(src= '#{picurl}')
-    .col-xs-8
-      img(src='http://0.media.collegehumor.cvcdn.com/29/39/e33256bc6c0aa960ce4759d4a46ceaa1.gif')
+    .col-sm-4  
+      ul.privatelist Item Information
+        li #{name}
+        img.regular(src= '#{picurl}')
+        li #{description}
+    .tradables.col-sm-8
+      h1 Available items for trade
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th#names Name
+            th#description Description
+            th Picture
+            th Actions
+        tbody#privatetradables
+          tr#templatetradables
+            td.name
+            td.description
+            td.picurl
+            td.remove
+block scripts
+  script(src="/js/trade.js")  

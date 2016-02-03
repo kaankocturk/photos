@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 
-var offerSchema = new mongoose.Schema({
+var tradeSchema = new mongoose.Schema({
   asker: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   askee: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   status: {type: String},
@@ -10,6 +10,6 @@ var offerSchema = new mongoose.Schema({
   askeeitem: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'}
 });
 
-var Offer = mongoose.model('Offer', offerSchema);
+var Trade = mongoose.model('Trade', tradeSchema);
 
-module.exports = Offer;
+module.exports = Trade;

@@ -16,12 +16,31 @@ function init(){
       $('#updateItem').modal();
   });
 
-  $('#updateItem').on('click', '.updateItem', function(e){
-    $.ajax({url: '/items/'+mrowid, method: 'PUT', data: {name: $('input#mname').val(), price: $('input#mprice').val(), picurl: $('input#mpicurl').val()}});
-    $('input').val('');
+  $('#inventorytable').on('click', '.list',function(e){
+      e.stopPropagation();
+      $mrow = $(this).closest('tr');
+      mrowid = $mrow.data('id');
+      if($mrow.hasClass('listed')){
+        $.ajax({url: '/items/list/'+mrowid, method: 'PUT', data: {listed: false}});
+        location.reload();
+      }else{
+        $.ajax({url: '/items/list/'+mrowid, method: 'PUT', data: {listed: true}});
+        location.reload();
+      }
   });
 
-  $('#inventorytable').on('click', '.remove',function(e){
+  $('#updateItem').on('click', '.updateItem', function(e){
+    $.ajax({url: '/items/'+mrowid, method: 'PUT', data: {name: $('input#mname').val(), description: $('input#mdescription').val(), picurl: $('input#mpicurl').val()}});
+    $('input').val('');
+    // if($(this).prop("checked") == true){
+    //             alert("Checkbox is checked.");
+    //         }
+    //         else if($(this).prop("checked") == false){
+    //             alert("Checkbox is unchecked.");
+    //         }
+  });
+
+  $('#inventorytable').on('click', '.removeitem',function(e){
     e.stopPropagation();
     var $row = $(this).closest('tr');
     console.log($row.data('id'));
@@ -41,13 +60,15 @@ function init(){
         console.log(data);
       domstuff = data.map(function(input,index){
           console.log(input);
-          var $remove = $('<button>').addClass('btn btn-warning remove btn-sm').append('Remove');
-          var $update = $('<button>').addClass('btn btn-info update btn-sm').append('Update item');
-          var $tr = $('#templateinventory').clone().attr('id', 'item'+index).data('id', input._id);
+          var $remove = $('<button>').addClass('btn btn-warning removeitem btn-sm').append('Remove');
+          var $update = $('<button>').addClass('btn btn-info update btn-sm').append('Update');
+          var $list = $('<button>').addClass('btn btn-success list btn-sm').append(input.isAvailable ? 'Unlist' : 'List');
+          var $tr = $('#templateinventory').clone().attr('id', 'item'+index).data('id', input._id).addClass(input.isAvailable ? 'listed' : 'notlisted');
           $tr.find('.name').text(input.name);
           $tr.find('.description').text(input.description);
-          $tr.find('.picurl').text(input.picurl);
-          $tr.find('.remove').append($remove,$update);
+          var $img = $('<img>').attr('src', input.picurl).addClass('thumb');
+          $tr.find('.picurl').append($img);
+          $tr.find('.remove').append($remove,$update,$list);
           return $tr;
         });
         console.log(domstuff);

@@ -4,9 +4,24 @@
 #template{
     display: none;
 }
+#templatemarket{
+  display: none;
+}
+#templatetradables{
+  display: none;
+}
 body{
   font-size: 17px;
 }
 table{
   margin-top: 36px;
+}
+.thumb{
+  max-width: 100px;
+}
+.regular{
+  max-width: 200px;
+}
+.privatelist{
+  margin-top: 200px;
 }

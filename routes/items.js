@@ -10,9 +10,19 @@ var User = require('../models/user');
 
 router.get('/', function(req, res, next) {
   Item.find({}, function(err, items) {
-    console.log('errgettingitems:', err);
-    console.log('items:', items);
-    res.send(items);
+    var newarr=[];
+    User.findOne({uid: req.user.uid}, function(err, user){
+      for(var i=0; i<items.length; i++){
+        if(user.inventory.indexOf(items[i]._id)===-1 && items[i].isAvailable){
+          console.log('if');
+          console.log(user.inventory.indexOf(items[i]._id));
+          console.log('item', items[i]);
+          newarr.push(items[i]);
+        }
+      }
+      console.log(newarr);
+      res.send(newarr);
+    });
   });
 });
 
@@ -75,6 +85,22 @@ router.put('/:id', function(req,res){
     res.send('ok');
   });
 
+});
+
+router.put('/list/:id', function(req,res){
+  console.log(req.params.id);
+  console.log(req.body);
+  Item.update({_id: req.params.id}, {$set : {isAvailable: req.body.listed}}, function(err){
+    res.send('ok');
+  });
+});
+
+router.post('/trade/:id', function(req, res, next) {
+  User.findOne({uid: req.user.uid}).populate('inventory').exec(function(err, user){
+    if(err) console.log('asda',err);
+    console.log('39',user);
+    res.send(user.inventory);
+  });
 });
 
 module.exports = router;
