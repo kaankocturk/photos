@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
+var fs = require('fs');
+var itemObj;
 
 var authMiddleware = require('../config/auth');
 
@@ -20,9 +23,17 @@ router.get('/register', function(req, res, next) {
   res.render('register');
 });
 
-router.get('/profile', authMiddleware, function(req, res, next) {
+router.get('/dashboard', authMiddleware, function(req, res, next) {
   console.log('req.user:', req.user);
-  res.render('profile');
+  res.render('dashboard');
+});
+
+router.get('/itemform', function(req, res) {
+  res.render('itemForm');
+});
+
+router.get('/marketplace', function(req, res) {
+  res.render('marketplace');
 });
 
 module.exports = router;

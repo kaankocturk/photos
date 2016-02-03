@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1 Marketplace
+  p Click on a header to sort. 
+  table.table.table-striped.table-hover
+    thead
+      tr
+        th#names Name
+        th#description Description
+        th Picture
+        th Actions
+    tbody
+      tr#template
+        td.name
+        td.description
+        td.picurl
+        td.remove  
+  p           
+    button.btn.btn-info.filter Filter
+    button.btn.btn-default.reset Reset      
+  #filterList.modal.fade(role='dialog')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h2.modal-title Filter by either name or number
+        .modal-body
+          p Enter new information.
+          form.input(role='form')
+            .form-group
+              label(for='m2name') Name:
+              input#m2name.form-control(type='text')
+            .form-group
+              label(for='m2price') Price:
+              input#m2price.form-control(type='number')
+              label.radio-inline Greater than
+              input(id='greater', type='radio', name='optradio')
+              label.radio-inline Equal to
+              input(id='equal', type='radio', name='optradio')
+              label.radio-inline Less than
+              input(id='less', type='radio', name='optradio')
+            button.btn.btn-success.filterList(type='submit') Filter  
+        .modal-footer
+          button.btn.btn-default(type='button', data-dismiss='modal') Close        
+  script(src='js/itemList.js')

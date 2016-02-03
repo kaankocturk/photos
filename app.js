@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/stock'
+var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/barter'
 var mongoose = require('mongoose');
 mongoose.connect(mongoUrl, function(err) {
   console.log(err || `Connected to MongoDB: ${mongoUrl}`);
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
-app.use('/stocks', require('./routes/stocks'));
+app.use('/items', require('./routes/items'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

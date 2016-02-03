@@ -3,10 +3,10 @@ extends layout
 block content
   #main  
     h1= title
-    a(href='/stocks')
-      button.btn.btn-primary Search stocks
-    a(href='/profile')
-      button.btn.btn-info Show my watchlist
+    a(href='/dashboard')
+      button.btn.btn-primary Dashboard
+    a(href='/marketplace')
+      button.btn.btn-info Marketplace
 block scripts
   script(src='/lib/firebase/firebase.js')
   script(src="/js/index.js")

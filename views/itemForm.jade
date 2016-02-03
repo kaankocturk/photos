@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .main
+    .container.container1
+      form.form-inline.input(role='form')
+        .form-group
+          label(for='name') Name:
+          input#name.form-control(type='text')
+        .form-group
+          label(for='description') Description:
+          input#description.form-control(type='text')
+        .form-group
+          label(for='picurl') Pic Url:
+          input#picurl.form-control(type='text')
+        button.btn.btn-success.addItem(type='submit') Add Item
+    .container.container2
+      a(href='/dashboard')
+        button.btn.btn-info.dashboard Dashboard
+  script(src='js/itemForm.js')

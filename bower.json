@@ -1,23 +1,24 @@
 {
-  "name": "herokutest",
+  "name": "barter",
   "description": "",
   "main": "",
   "authors": [
-    "Cade Nichols <cade@cadenichols.com>"
+    "kaankocturk <kkocturk1@babson.edu>"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/kaankocturk/APITracker",
   "moduleType": [],
-  "homepage": "",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
+    "public/lib",
     "test",
     "tests"
   ],
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "jquery": "^2.2.0",
-    "firebase": "^2.4.0"
+    "jquery": "~2.2.0",
+    "firebase": "~2.4.0"
   }
 }

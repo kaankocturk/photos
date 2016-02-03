@@ -2,7 +2,7 @@
 $(document).ready(init);
 
 function init(){
-  var ref = new Firebase('https://loginz.firebaseio.com/');
+  var ref = new Firebase('https://bartererz.firebaseio.com/');
   ref.set('whoa!');
   if(document.cookie){
     $('.loginli, .regli').css('visibility', 'hidden');

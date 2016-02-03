@@ -1,0 +1,102 @@
+extends layout
+
+block content
+  .row.row1
+    .col-sm-6.col-xs-12
+      h1 Outgoing offers
+      p Click on a header to sort. 
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th User asked
+            th Item wanted
+            th Item offered
+            th Status
+        tbody
+          tr#template
+            td.user
+            td.itemwanted
+            td.itemoffered
+            td.status
+    .col-sm-6.col-xs-12
+      h1 Incoming offers
+      p Click on a header to sort. 
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th User
+            th Item wanted
+            th Item offered
+            th Status
+        tbody
+  .row.row2
+    .col-xs-12
+      h1 Inventory
+      p Click on a header to sort. 
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th#names Name
+            th#description Description
+            th Picture
+            th Actions
+        tbody#inventorytable
+          tr#templateinventory
+            td.name
+            td.description
+            td.picurl
+            td.remove  
+      p           
+        button.btn.btn-info.filter Filter
+        button.btn.btn-default.reset Reset
+        a(href='/itemForm')
+          button.btn.btn-info.dashboard Add a new item
+      #updateItem.modal.fade(role='dialog')
+        .modal-dialog
+          .modal-content
+            .modal-header
+              h2.modal-title Update item
+            .modal-body
+              p Enter new information.
+              form.input(role='form')
+                .form-group
+                  label(for='mname') Name:
+                  input#mname.form-control(type='text')
+                .form-group
+                  label(for='mdescription') Description:
+                  input#mprice.form-control(type='text')
+                .form-group
+                  label(for='mpicurl') Pic Url:
+                  input#mpicurl.form-control(type='text')
+                .form-group
+                  .checkbox
+                    label Listed?
+                      input(type='checkbox', value='')
+                button.btn.btn-success.updateItem(type='submit') Update Item  
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') Close        
+      #filterList.modal.fade(role='dialog')
+        .modal-dialog
+          .modal-content
+            .modal-header
+              h2.modal-title Filter by either name or number
+            .modal-body
+              p Enter new information.
+              form.input(role='form')
+                .form-group
+                  label(for='m2name') Name:
+                  input#m2name.form-control(type='text')
+                .form-group
+                  label(for='m2price') Price:
+                  input#m2price.form-control(type='number')
+                  label.radio-inline Greater than
+                  input(id='greater', type='radio', name='optradio')
+                  label.radio-inline Equal to
+                  input(id='equal', type='radio', name='optradio')
+                  label.radio-inline Less than
+                  input(id='less', type='radio', name='optradio')
+                button.btn.btn-success.filterList(type='submit') Filter  
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') Close        
+block scripts
+  script(src="/js/dashboard.js")

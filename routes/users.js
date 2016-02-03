@@ -8,7 +8,7 @@ var authMiddleware = require('../config/auth');
 
 var User = require('../models/user');
 
-var ref = new Firebase('https://loginz.firebaseio.com/');
+var ref = new Firebase('https://bartererz.firebaseio.com/');
 
 router.post('/register', function(req, res, next) {
   ref.createUser(req.body, function(err, userData) {
@@ -21,8 +21,11 @@ router.post('/register', function(req, res, next) {
 
 router.post('/login', function(req, res, next) {
   ref.authWithPassword(req.body, function(err, authData) {
+    console.log('authdata',authData);
     if(err) return res.status(400).send(err);
     User.findOne({uid: authData.uid}, function(err, user) {
+      console.log('erruser',err);
+      console.log('user',user);
       var token = user.generateToken();
       res.cookie('mytoken', token).send();
     });
