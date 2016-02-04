@@ -62,7 +62,7 @@ router.put('/complete/:id', function(req,res){
   console.log(req.params.id);
   console.log(req.body);
   Trade.update({_id: req.params.id}, {$set : {status: req.body.status}}, function(err){
-    res.send('ok');
+    console.log(err);
   });
   Trade.findOne({_id: req.params.id}).exec(function(err, trade){
     console.log(trade);
@@ -83,6 +83,9 @@ router.put('/complete/:id', function(req,res){
           console.log('saveduser:', saveditem);
         });
       });
+    });
+    Trade.update({askeeitem: trade.askeeitem, status: 'pending'}, {$set : {status: 'declined'}}).exec(function(err){
+      if(err) console.log('2usersremove',err);
     });
   });
 });

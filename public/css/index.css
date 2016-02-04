@@ -1,9 +1,13 @@
 body{
-  background: url('http://newchallenge.newschool.edu/wp-content/uploads/2012/02/barter.jpg');
+  background: url('http://www.brianrobinsonstudios.com/uploads/3/8/0/9/3809039/7480268_orig.jpg');
   background-size: 100vw;
   background-repeat: no-repeat;
 }
 
 nav{
   color: #00F;
+}
+
+h1{
+  color: silver;
 }

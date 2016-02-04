@@ -11,7 +11,13 @@ function init(){
     .fail(function(err) {
       console.error(err);
     });
-    location.replace('/dashboard');
+    $.ajax({url: '/items/list/'+rowid, method: 'PUT', data: {listed: false}})
+    .success(function(data){console.log(data);
+      location.replace('/dashboard');
+    })
+    .fail(function(err) {
+      console.error(err);
+    });
   });
 
   $.get('/items/my')
