@@ -1,4 +1,4 @@
-#templateinventory{
+#templatealbums{
   display: none;
 }
 #template{
@@ -21,6 +21,7 @@ table{
 }
 .thumb{
   max-width: 72px;
+  margin: 10px;
 }
 .regular{
   max-width: 200px;

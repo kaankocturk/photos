@@ -3,18 +3,15 @@ extends layout
 block content
   .main
     .container.container1
-      form.form-inline.input(role='form')
+      form.form-inline.input(action="/items", method="post", enctype="multipart/form-data")
         .form-group
           label(for='name') Name:
           input#name.form-control(type='text')
         .form-group
           label(for='description') Description:
           input#description.form-control(type='text')
-        .form-group
-          label(for='picurl') Pic Url:
-          input#picurl.form-control(type='text')
-        button.btn.btn-success.addItem(type='submit') Add Item
+        button.btn.btn-success.addAlbum(type='submit') Add Album
     .container.container2
       a(href='/dashboard')
         button.btn.btn-info.dashboard Dashboard
-  script(src='js/itemForm.js')
+  script(src='js/albumForm.js')

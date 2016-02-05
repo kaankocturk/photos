@@ -3,7 +3,6 @@
 var $email, $password;
 
 $(function() {
-  $('.loginli, .regli, .logoutli').css('visibility', 'hidden');
   $email = $('#email');
   $password = $('#password');
   $('.btn-primary').click(reset);

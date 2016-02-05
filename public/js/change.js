@@ -3,7 +3,6 @@
 var $email, $newpassword, $oldpassword;
 
 $(function() {
-  $('.loginli, .regli, .logoutli').css('visibility', 'hidden');
   $email = $('#email');
   $oldpassword = $('#old');
   $newpassword = $('#new');

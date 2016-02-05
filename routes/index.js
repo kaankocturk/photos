@@ -32,8 +32,12 @@ router.get('/itemform', function(req, res) {
   res.render('itemForm');
 });
 
-router.get('/marketplace', function(req, res) {
-  res.render('marketplace');
+router.get('/albumForm', function(req, res) {
+  res.render('albumForm');
+});
+
+router.get('/community', function(req, res) {
+  res.render('community');
 });
 
 module.exports = router;

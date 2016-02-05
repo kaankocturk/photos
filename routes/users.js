@@ -8,7 +8,7 @@ var authMiddleware = require('../config/auth');
 
 var User = require('../models/user');
 
-var ref = new Firebase('https://bartererz.firebaseio.com/');
+var ref = new Firebase('https://sharealbums.firebaseio.com/');
 
 router.post('/register', function(req, res, next) {
   console.log('body',req.body);

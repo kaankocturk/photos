@@ -1,0 +1,17 @@
+extends layout
+block content
+  .row
+    .col-sm-6  
+      h2 Album Information
+      p #{name}
+      p #{description}
+      a(href='/dashboard')
+        button.btn.btn-info.dashboard Dashboard
+    .col-sm-6
+      .container.container1
+        form(action="/albums/"+ '#{_id}', method="post", enctype="multipart/form-data")
+          input(type='file', name="images", id="image", multiple=false)
+          button.btn.btn-success.addItem(type='submit') Add Picture
+  .row.album
+block scripts
+  script(src="/js/album.js")  

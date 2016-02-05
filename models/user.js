@@ -6,7 +6,7 @@ var JWT_SECRET = process.env.JWT_SECRET;
 
 var userSchema = new mongoose.Schema({
   uid: String,
-  inventory: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'
+  albums: [{type: mongoose.Schema.Types.ObjectId, ref: 'Album'
   }]
 });
 
