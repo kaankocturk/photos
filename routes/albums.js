@@ -10,6 +10,23 @@ var upload = multer({ storage: multer.memoryStorage()});
 var authMiddleware = require('../config/auth');
 router.use(authMiddleware);
 
+router.get('/', function(req, res, next) { //community page
+  Album.find({}).populate('pictures').exec(function(err, albums) {
+    var newarr=[];
+    User.findOne({uid: req.user.uid}, function(err, user){
+      for(var i=0; i<albums.length; i++){
+        if(user.albums.indexOf(albums[i]._id)===-1 && albums[i].shared){
+          console.log('if');
+          console.log(user.albums.indexOf(albums[i]._id));
+          newarr.push(albums[i]);
+        }
+      }
+      console.log(newarr);
+      res.send(newarr);
+    });
+  });
+});
+
 router.post('/', function(req, res) {
   console.log(req.body);
   var album = new Album(req.body);
@@ -49,6 +66,14 @@ router.get('/my', function(req, res, next) {
     if(err) console.log('asda',err);
     console.log('39',user);
     res.send(user.albums);
+  });
+});
+
+router.put('/share/:id', function(req,res){
+  console.log(req.params.id);
+  console.log(req.body);
+  Album.update({_id: req.params.id}, {$set : {shared: req.body.shared}}, function(err){
+    console.log(err);
   });
 });
 
@@ -96,48 +121,5 @@ router.get('/:id', function(req, res) {
     res.render('album', album);
   });
 });
-//
-// router.put('/complete/:id', function(req,res){
-//   console.log(req.params.id);
-//   console.log(req.body);
-//   Trade.update({_id: req.params.id}, {$set : {status: req.body.status}}, function(err){
-//     console.log(err);
-//   });
-//   Trade.findOne({_id: req.params.id}).exec(function(err, trade){
-//     console.log(trade);
-//     User.findOne({_id: trade.askee}).exec(function(err, user){
-//       if(err) console.log('asda',err);
-//       console.log('user',user);
-//       var askeeitem= user.albums.splice(user.albums.indexOf(trade.askeeitem),1)[0];
-//       var askeritem;
-//       User.findOne({_id: trade.asker}).exec(function(err, user2){
-//         askeritem= user2.albums.splice(user2.albums.indexOf(trade.askeritem),1,askeeitem)[0];
-//         user2.save(function(err, saveditem) {
-//           console.log('errsavinguser:', err);
-//           console.log('saveduser:', saveditem);
-//         });
-//         user.albums.push(askeritem);
-//         user.save(function(err, saveditem) {
-//           console.log('errsavinguser:', err);
-//           console.log('saveduser:', saveditem);
-//         });
-//       });
-//     });
-//     Trade.update({askeeitem: trade.askeeitem, status: 'pending'}, {$set : {status: 'declined'}}).exec(function(err){
-//       if(err) console.log('2usersremove',err);
-//     });
-//   });
-// });
-//
-// router.delete('/:id', function(req, res, next) {
-//   Trade.remove({_id: req.params.id}, function(err) {
-//     if (err) {
-//       console.log('cant remove!');
-//       res.status(400).send(err);
-//     } else {
-//       res.send('success!');
-//     }
-//   });
-//   });
 
 module.exports = router;

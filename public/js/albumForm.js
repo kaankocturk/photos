@@ -10,7 +10,7 @@ function init(e){
 
 function handleEntry(e){
   e.preventDefault();
-  $.post('/albums', {name: $('input#name').val(), description: $('input#description').val()})
+  $.post('/albums', {name: $('input#name').val(), description: $('input#description').val(), shared: false})
   .success(function(data){
     console.log(data);
   }).fail(function(error){

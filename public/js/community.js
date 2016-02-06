@@ -4,31 +4,45 @@ var mrowid;
 var total = 0;
 var domstuff;
 var itemcount = 0;
+var albumpreview;
 var namesorted = false;
 var descsorted = false;
+var covers = [];
 
 function init(){
-  $('tbody').on('click', '.offer',function(e){
+  $('tbody').on('click', '.view',function(e){
+    e.stopPropagation();
     var $row = $(this).closest('tr');
     var rowid = $row.data('id');
-    location.replace('/items/'+rowid);
+    $.get('/albums/images/'+rowid)
+      .success(function(data){
+        console.log(data);
+        if(data.length>0){
+          console.log(data);
+        albumpreview = data.map(function(input){
+            return $('<img>').attr('src', input.picurl).addClass('regular').attr('id', input._id);
+          });
+        $('#view').append(albumpreview);
+        }
+      })
+      .fail(function(err) {
+        console.error(err);
+      });
   });
 
-  $.get('/items')
+  $.get('/albums')
   .success(function(data){
     console.log(data);
     if(data.length){
       console.log(data);
       domstuff = data.map(function(input,index){
-        itemcount++;
-        console.log(input);
-        var $offer = $('<button>').addClass('btn btn-warning offer btn-sm').append('Details');
-        var $tr = $('#templatemarket').clone().attr('id', 'item'+index).data('id', input._id);
+        var $view = $('<button>').addClass('btn btn-warning view btn-sm').append('View');
+        var $tr = $('#templatemarket').clone().attr('id', 'album'+index).data('id', input._id);
         $tr.find('.name').text(input.name);
         $tr.find('.description').text(input.description);
-        var $img = $('<img>').attr('src', input.picurl).addClass('thumb');
-        $tr.find('.picurl').append($img);
-        $tr.find('.remove').append($offer);
+        $tr.find('.remove').append($view);
+        covers.push($('<img>').attr('src', input.pictures[0].picurl).addClass('preview'));
+        itemcount++;
         return $tr;
       });
       console.log(domstuff);
@@ -38,6 +52,17 @@ function init(){
   .fail(function(err) {
     console.error(err);
   });
+
+  $('tbody').on('mouseenter', 'td',function(e){
+    var $row = $(this).closest('tr');
+    var coverid = parseInt($row.attr('id').substr(5));
+    $('.preview').append(covers[coverid]);
+  });
+
+  $('tbody').on('mouseleave', 'td',function(e){
+    $('.preview img').detach();
+  });
+
 
   $('th#names').on('click', function(){
     var arrofnames = [];

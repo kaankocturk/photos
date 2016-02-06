@@ -20,15 +20,19 @@ table{
   margin-top: 36px;
 }
 .thumb{
-  max-width: 72px;
+  max-width: 200px;
   margin: 10px;
 }
 .regular{
-  max-width: 200px;
+  max-width: 80vw;
+  margin-top: 20px;
 }
 .privatelist{
   margin-top: 20px;
 }
 .minithumb{
   max-width: 30px;
+}
+.preview{
+  max-width: 35vw;
 }

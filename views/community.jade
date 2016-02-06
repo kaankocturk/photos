@@ -1,26 +1,27 @@
 extends layout
 
 block content
-  h1 community
+  h1 Community albums
   p Click on a header to sort. 
-  table.table.table-striped.table-hover
-    thead
-      tr
-        th#names Name
-        th#description Description
-        th Picture
-        th Actions
-    tbody#market
-      tr#templatemarket
-        td.name
-        td.description
-        td.picurl
-        td.remove  
-  p           
-    button.btn.btn-info.filter Filter
-    button.btn.btn-default.reset Reset  
-  a(href='/dashboard')
-    button.btn.btn-info.dashboard Dashboard      
+  .row
+    .col-sm-6
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th#names Name
+            th#description Description
+            th Actions
+        tbody#market
+          tr#templatemarket
+            td.name
+            td.description
+            td.remove       
+      button.btn.btn-info.filter Filter
+      button.btn.btn-default.reset Reset  
+      a(href='/dashboard')
+        button.btn.btn-info.dashboard Dashboard      
+    .col-sm-6.preview      
+  .row#view          
   #filterList.modal.fade(role='dialog')
     .modal-dialog
       .modal-content

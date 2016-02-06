@@ -17,7 +17,7 @@ router.get('/my', function(req, res, next) {
   });
 });
 
-router.get('/:id', function(req, res) {
+router.get('/:id/:album', function(req, res) {
   Item.findById(req.params.id, function(err, item) {
     console.log('item is:'+item);
     res.render('item', item);
@@ -27,15 +27,15 @@ router.get('/:id', function(req, res) {
 
 
 // router.get('/', function(req, res, next) {
-//   Item.find({}, function(err, items) {
+//   Album.find({}, function(err, albums) {
 //     var newarr=[];
 //     User.findOne({uid: req.user.uid}, function(err, user){
-//       for(var i=0; i<items.length; i++){
-//         if(user.albums.indexOf(items[i]._id)===-1 && items[i].isAvailable){
+//       for(var i=0; i<albums.length; i++){
+//         if(user.albums.indexOf(albums[i]._id)===-1 && albums[i].isAvailable){
 //           console.log('if');
-//           console.log(user.albums.indexOf(items[i]._id));
+//           console.log(user.albums.indexOf(albums[i]._id));
 //           console.log('item', items[i]);
-//           newarr.push(items[i]);
+//           newarr.push(albums[i]);
 //         }
 //       }
 //       console.log(newarr);
@@ -63,16 +63,15 @@ router.get('/:id', function(req, res) {
 // });
 
 
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id/:albumid', function(req, res, next) {
   Item.remove({_id: req.params.id}, function(err) {
     if (err) {
       console.log('cant remove!');
       res.status(400).send(err);
     } else {
-      User.findOne({uid: req.user.uid}).exec(function(err, user){
-        console.log(user.albums);
-        user.albums.splice(user.albums.indexOf(req.params.id),1);
-        user.save(function(err, saveditem) {
+      Album.findOne({_id: req.params.albumid}).exec(function(err, album){
+        album.pictures.splice(album.pictures.indexOf(req.params.id),1);
+        album.save(function(err, saveditem) {
           console.log('errsavinguser:', err);
           console.log('saveduser:', saveditem);
         });

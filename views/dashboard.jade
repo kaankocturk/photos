@@ -2,12 +2,12 @@ extends layout
 
 block content
   .row.row1
-    .col-sm-7
-      h1 albums
+    .col-sm-10
+      h1 Dashboard
       table.table.table-striped.table-hover
         thead
           tr
-            th#names Name
+            th#names Album
             th#description Description
             th Actions
         tbody#albumstable
@@ -18,7 +18,7 @@ block content
         a(href='/albumForm')
           button.btn.btn-info.albumform Add a new album
         a(href='/community')
-          button.btn.btn-primary.community community
+          button.btn.btn-primary.community Community
     .col-sm-4.col-sm-offset-1            
     #updatealbum.modal.fade(role='dialog')
       .modal-dialog

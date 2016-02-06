@@ -1,4 +1,4 @@
-var domstuff;
+var domstuff, mrow, mrowid;
 $(document).ready(init);
 
 function init(){
@@ -10,28 +10,28 @@ function init(){
       $('#updatealbum').modal();
   });
 
+  $('#updatealbum').on('click', '.updatealbum', function(e){
+    $.ajax({url: '/albums/'+mrowid, method: 'PUT', data: {name: $('input#mname').val(), description: $('input#mdescription').val()}});
+    $('input').val('');
+  });
+
   $('tbody').on('click', '.showalbum',function(e){
     var $row = $(this).closest('tr');
     var rowid = $row.data('id');
     location.replace('/albums/'+rowid);
   });
 
-  // $('#albumstable').on('click', '.share',function(e){
-  //     e.stopPropagation();
-  //     $mrow = $(this).closest('tr');
-  //     mrowid = $mrow.data('id');
-  //     if($mrow.hasClass('shared')){
-  //       $.ajax({url: '/albums/share/'+mrowid, method: 'PUT', data: {shared: false}});
-  //       location.reload();
-  //     }else{
-  //       $.ajax({url: '/albums/share/'+mrowid, method: 'PUT', data: {shared: true}});
-  //       location.reload();
-  //     }
-  // });
-
-  $('#updatealbum').on('click', '.updatealbum', function(e){
-    $.ajax({url: '/albums/'+mrowid, method: 'PUT', data: {name: $('input#mname').val(), description: $('input#mdescription').val()}});
-    $('input').val('');
+  $('#albumstable').on('click', '.share',function(e){
+      e.stopPropagation();
+      $mrow = $(this).closest('tr');
+      mrowid = $mrow.data('id');
+      if($mrow.hasClass('shared')){
+        $.ajax({url: '/albums/share/'+mrowid, method: 'PUT', data: {shared: false}});
+        location.reload();
+      }else{
+        $.ajax({url: '/albums/share/'+mrowid, method: 'PUT', data: {shared: true}});
+        location.reload();
+      }
   });
 
   $('#albumstable').on('click', '.removealbum',function(e){
@@ -57,8 +57,8 @@ function init(){
           var $remove = $('<button>').addClass('btn btn-danger removealbum btn-sm').append('Remove');
           var $show = $('<button>').addClass('btn btn-warning showalbum btn-sm').append('Show');
           var $update = $('<button>').addClass('btn btn-info update btn-sm').append('Update');
-          var $share = $('<button>').addClass('btn btn-success share btn-sm').append(input.isAvailable ? 'Unshare' : 'Share');
-          var $tr = $('#templatealbums').clone().attr('id', 'album'+index).data('id', input._id).addClass(input.isAvailable ? 'shared' : 'notshared');
+          var $share = $('<button>').addClass('btn btn-success share btn-sm').append(input.shared ? 'Unshare' : 'Share');
+          var $tr = $('#templatealbums').clone().attr('id', 'album'+index).data('id', input._id).addClass(input.shared ? 'shared' : 'notshared');
           $tr.find('.name').text(input.name);
           $tr.find('.description').text(input.description);
           $tr.find('.remove').append($remove,$update,$share,$show);

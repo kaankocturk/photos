@@ -3,7 +3,7 @@ $(document).ready(init);
 
 function init(){
 $('.remove').on('click',function(e){
-  $.ajax({url:'/items/'+window.location.pathname.split('/')[2], method: 'DELETE'}).success(function(data){
+  $.ajax({url:'/items/'+window.location.pathname.split('/')[2]+'/'+window.location.pathname.split('/')[3], method: 'DELETE'}).success(function(data){
   console.log('data:', data);
   location.replace('/');
   })

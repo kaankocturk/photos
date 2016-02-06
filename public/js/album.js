@@ -4,12 +4,7 @@ function init(){
 
   $('.album').on('click', 'img' ,function() {
     console.log('this',$(this).attr('id'));
-    location.replace('/items/' + $(this).attr('id'))
-    // .success(function(data){
-    //   console.log(data);
-    // }).fail(function(error){
-    //   console.log('we failed you bruh');
-    // });
+    location.replace('/items/' + $(this).attr('id')+'/'+window.location.pathname.split('/')[2]);
   });
 
   $.get('/albums/images/'+window.location.pathname.split('/')[2])
